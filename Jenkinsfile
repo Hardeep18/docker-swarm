@@ -14,12 +14,14 @@ node {
              sh 'docker build -t linuxcloudops/website-test:${env.BUILD_NUMBER} -f webpage'
     }
     stage('Push Image') {
-            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]){
             echo "${env.BUILD_NUMBER}"
             sh "docker push linuxcloudops/website-test:${env.BUILD_NUMBER}"
            }
    }
     stage('Deploy ') {  
-            sh " docker srevice create --name web -p 9089:80  linuxcloudops/website-test:${env.BUILD_NUMBER}"  
+           
+           /* sh " docker srevice create --name web -p 9089:80  linuxcloudops/website-test:${env.BUILD_NUMBER}"  */
+            sh "docker stack deploy -c docker-stack.yml web"
          }
    }   
