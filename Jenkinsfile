@@ -1,4 +1,4 @@
-node {
+node 'prod' {
     def app
 
     stage('Clone repository') {
@@ -22,6 +22,6 @@ node {
     stage('Deploy ') {  
            
            /* sh " docker srevice create --name web -p 9089:80  linuxcloudops/website-test:${env.BUILD_NUMBER}"  */
-            sh "docker stack deploy -c docker-stack.yml web"
+            /*sh "docker stack deploy -c docker-stack.yml web" */
          }
    }   
