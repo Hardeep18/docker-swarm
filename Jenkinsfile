@@ -23,6 +23,8 @@ node  ('prod'){
     stage('Deploy ') {  
            
            /* sh " docker srevice create --name web -p 9089:80  linuxcloudops/website-test:${env.BUILD_NUMBER}"  */
-            /*sh "docker stack deploy -c docker-stack.yml web" */
+             echo linuxcloudops/website-test:${env.BUILD_NUMBER}"
+             sh " sed -i 's/linuxcloudops/website-test:/linuxcloudops/website-test:${env.BUILD_NUMBER}/g' docker-stack.yml"
+             sh "docker stack deploy -c docker-stack.yml web" 
          }
    }   
