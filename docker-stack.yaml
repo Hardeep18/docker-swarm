@@ -1,7 +1,7 @@
 version: '3'
 services:
     app:
-     image: linuxcloudops/webapp:v1
+     image: linuxcloudops/website-test
      ports:
      - "8089:80"
      deploy:
