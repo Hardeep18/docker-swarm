@@ -14,7 +14,7 @@ node 'prod' {
              sh 'docker build -t linuxcloudops/website-test:${env.BUILD_NUMBER} -f webpage'
     }
     stage('Push Image') {
-            withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]){
+            withDockerRegistry([ credentialsId: "ce536e2b-59f1-48a2-bb89-384f0c5a5c2e", url: "" ]){
             echo "${env.BUILD_NUMBER}"
             sh "docker push linuxcloudops/website-test:${env.BUILD_NUMBER}"
            }
