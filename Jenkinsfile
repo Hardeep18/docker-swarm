@@ -11,7 +11,7 @@ node  {
         /* This builds the actual image; synonymous to
          * docker build on the command line. */
              echo "${env.BUILD_NUMBER}"
-             sh 'docker build -t linuxcloudops/website-test:${env.BUILD_NUMBER} -f webpage'
+             sh 'docker build -t linuxcloudops/website-test -f webpage'
     }
     stage('Push Image') {
             withDockerRegistry([ credentialsId: "ce536e2b-59f1-48a2-bb89-384f0c5a5c2e", url: "" ]){
